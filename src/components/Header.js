@@ -1,11 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './styles.module.css'
 import { useBasket } from '../context/BasketContext'
 
 
 const Header = () => {
-    const {  state } = useBasket()
-
+    const { state,show } = useBasket()
     return (
 
 
@@ -13,7 +12,11 @@ const Header = () => {
             <ul className={styles.navbar}>
                 <li><h1>E-Commerce</h1></li>
                 <li>Home </li>
-                <li>Basket <span>{state.basket}</span></li>
+                <li >Basket
+                    {
+                        show ? <span className={styles.countNavbar}>{state.basket}</span>:<span></span>
+                    }
+                </li>
             </ul>
         </div>
     )

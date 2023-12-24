@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer } from 'react'
+import React, { createContext, useContext, useReducer,useState } from 'react'
 const basketProvider = createContext();
 const initialVal = {
     count: 1,
@@ -8,16 +8,18 @@ const initialVal = {
 const reducer = (state, action) => {
     switch (action.type) {
         case 'add':
-            return { count: action.payload }
+            return {...state, count: action.payload }
         case 'extract':
-            return { count: action.payload }
+            return {...state, count: action.payload }
         case 'addBasket':
-            return { ...state, basket: state.count }
+            return {...state, basket: state.count}
         default:
             return state
     }
 }
 const BasketContext = ({ children }) => {
+    const [show,setShow] = useState(false)
+
     const [state, dispatch] = useReducer(reducer, initialVal)
     const plus = (e) => {
         e.preventDefault()
@@ -27,13 +29,13 @@ const BasketContext = ({ children }) => {
         e.preventDefault()
         dispatch({ type: 'extract', payload: state.count === 1 ? state.count : state.count - 1 })
     }
-    const addBasket = (e) => {
+      const addBasket = (e) => {
         e.preventDefault()
-        dispatch({ type: 'addBasket', payload: state.basket })
+        dispatch({ type: 'addBasket', payload:state.basket})
+        setShow(true)
     }
-
     return (
-        <basketProvider.Provider value={{ plus, minus, state, initialVal, addBasket }}>
+        <basketProvider.Provider value={{ plus, minus, state, initialVal, addBasket,show,setShow }}>
             {children}
         </basketProvider.Provider>
     )

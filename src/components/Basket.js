@@ -3,11 +3,14 @@ import { useBasket } from '../context/BasketContext'
 import styles from './styles.module.css'
 import img  from './images/Alma.jpg'
 export default function Basket() {
-    const { plus, minus, state, initialVal,addBasket } = useBasket()
+    const { plus, minus, state, initialVal,addBasket,show,setShow } = useBasket()
     const priceCommmon = state.count * initialVal.price
+    const hideCount = () => {
+        setShow(false) 
+    }
      return (
         <div>
-
+            <div className={styles.allEkran} onClick={hideCount}></div>
             <div className={styles.card}>
                 <img src={img} alt="" width={200} />
                 <h3>Guba Apples</h3>
@@ -18,7 +21,6 @@ export default function Basket() {
                     <button className={styles.button} onClick={plus}>+</button>
                 </div>
                 <button className={styles.button} onClick={addBasket} >Add</button>
-                <p>{state.basket}</p>
             </div>
         </div>
     )
