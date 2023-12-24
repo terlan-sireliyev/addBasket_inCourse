@@ -1,14 +1,14 @@
 import React from 'react'
 import { useBasket } from '../context/BasketContext'
 import styles from './styles.module.css'
-import img  from './images/Alma.jpg'
+import img from './images/Alma.jpg'
 export default function Basket() {
-    const { plus, minus, state, initialVal,addBasket,show,setShow } = useBasket()
+    const { plus, minus, state, initialVal, addBasket, setShow } = useBasket()
     const priceCommmon = state.count * initialVal.price
     const hideCount = () => {
-        setShow(false) 
+        setShow(false)
     }
-     return (
+    return (
         <div>
             <div className={styles.allEkran} onClick={hideCount}></div>
             <div className={styles.card}>
