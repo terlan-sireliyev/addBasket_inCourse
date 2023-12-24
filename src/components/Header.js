@@ -1,9 +1,11 @@
 import React from 'react'
 import styles from './styles.module.css'
-// import { useApple } from '../context/Applecontext';
+import { useBasket } from '../context/BasketContext'
+
 
 const Header = () => {
-    // const { basket } = useApple();
+    const {  state } = useBasket()
+
     return (
 
 
@@ -11,7 +13,7 @@ const Header = () => {
             <ul className={styles.navbar}>
                 <li><h1>E-Commerce</h1></li>
                 <li>Home </li>
-                <li>Basket <span></span></li>
+                <li>Basket <span>{state.basket}</span></li>
             </ul>
         </div>
     )

@@ -18,7 +18,7 @@ export default function Basket() {
                     <button className={styles.button} onClick={plus}>+</button>
                 </div>
                 <button className={styles.button} onClick={addBasket} >Add</button>
-                {/* <p>{state.addCount}</p> */}
+                <p>{state.basket}</p>
             </div>
         </div>
     )
