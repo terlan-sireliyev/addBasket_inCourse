@@ -12,21 +12,13 @@ const reducer = (state, action) => {
         case 'extract':
             return { count: action.payload }
         case 'addBasket':
-            return {...state, basket: state.count}
+            return { ...state, basket: state.count }
         default:
             return state
     }
 }
 const BasketContext = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialVal)
-
-    const addBasket = (e) => {
-        e.preventDefault()
-        dispatch({ type: 'addBasket', payload:state.basket})
-    }
-
-
-
     const plus = (e) => {
         e.preventDefault()
         dispatch({ type: 'add', payload: state.count + 1 })
@@ -34,12 +26,11 @@ const BasketContext = ({ children }) => {
     const minus = (e) => {
         e.preventDefault()
         dispatch({ type: 'extract', payload: state.count === 1 ? state.count : state.count - 1 })
-
     }
-    
-
-
-
+    const addBasket = (e) => {
+        e.preventDefault()
+        dispatch({ type: 'addBasket', payload: state.basket })
+    }
 
     return (
         <basketProvider.Provider value={{ plus, minus, state, initialVal, addBasket }}>
